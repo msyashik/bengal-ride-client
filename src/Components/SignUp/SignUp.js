@@ -6,6 +6,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "../firebase.config";
 import { UserContext } from "../../App";
+import Header from "../Header/Header";
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -15,7 +16,8 @@ if (!firebase.apps.length) {
 
 const SignUp = () => {
   const { register, errors, handleSubmit, watch } = useForm();
-  const [loggedIn, setLoggedIn] = useContext(UserContext);
+  const { logInUser } = useContext(UserContext);
+  const [loggedIn, setLoggedIn] = logInUser;
   let history = useHistory();
   let location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
@@ -81,6 +83,7 @@ const SignUp = () => {
 
   return (
     <div>
+      <Header></Header>
       <div className="container">
         <h2>Register</h2>
         <form onSubmit={handleSubmit(onSubmit)}>

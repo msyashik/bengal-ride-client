@@ -4,10 +4,9 @@ import { Link } from "react-router-dom";
 
 const TransportDetail = (props) => {
   const { transport, image, startDest, endDest } = props.transport;
-  console.log(transport, image, startDest, endDest);
 
   return (
-    <div className="col-md-3">
+    <div className="col-md-3 mt-2">
       <Link
         to={`/destination/${transport}`}
         style={{ textDecoration: "none", color: "black" }}

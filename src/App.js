@@ -8,6 +8,7 @@ import SignUp from "./Components/SignUp/SignUp";
 import NoMatch from "./Components/NoMatch/NoMatch";
 import DestinationSearch from "./Components/DestinationSearch/DestinationSearch";
 import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import FinalDestination from "./Components/FinalDestination/FinalDestination";
 
 export const UserContext = createContext();
 
@@ -15,9 +16,19 @@ function App() {
   const [loggedIn, setLoggedIn] = useState({
     email: "",
   });
+  const [passengerData, setPassengerData] = useState({
+    from: "",
+    to: "",
+    date: "",
+    person: "",
+  });
   return (
-    <UserContext.Provider value={[loggedIn, setLoggedIn]}>
-      <h3>Email: {loggedIn.email}</h3>
+    <UserContext.Provider
+      value={{
+        logInUser: [loggedIn, setLoggedIn],
+        passData: [passengerData, setPassengerData],
+      }}
+    >
       <Router>
         <Switch>
           <Route path="/home">
@@ -35,6 +46,9 @@ function App() {
           <PrivateRoute path="/destination/:transportType">
             <DestinationSearch></DestinationSearch>
           </PrivateRoute>
+          <Route path="/destinationFixed/:transportType">
+            <FinalDestination></FinalDestination>
+          </Route>
           <Route path="*">
             <NoMatch></NoMatch>
           </Route>

@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { UserContext } from "../../App";
 
 const Header = () => {
-  const [loggedIn, setLoggedIn] = useContext(UserContext);
+  const { logInUser } = useContext(UserContext);
+  const [loggedIn, setLoggedIn] = logInUser;
   const verifyEmail = loggedIn.email;
 
   return (

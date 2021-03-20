@@ -14,6 +14,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import firebaseConfig from "../firebase.config";
 import { UserContext } from "../../App";
+import Header from "../Header/Header";
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -23,7 +24,8 @@ if (!firebase.apps.length) {
 
 const Login = () => {
   const { register, errors, handleSubmit } = useForm();
-  const [loggedIn, setLoggedIn] = useContext(UserContext);
+  const { logInUser } = useContext(UserContext);
+  const [loggedIn, setLoggedIn] = logInUser;
   let history = useHistory();
   let location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
@@ -40,7 +42,6 @@ const Login = () => {
         };
         setLoggedIn(newUser);
         history.replace(from);
-        console.log(user);
       })
       .catch((error) => {
         console.log(error.message);
@@ -87,6 +88,7 @@ const Login = () => {
   };
   return (
     <div>
+      <Header></Header>
       <div className="container">
         <h2>Sign in</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -103,7 +105,7 @@ const Login = () => {
                     required: "*Email is required",
                     pattern: {
                       value: /\S+@\S+\.\S+/,
-                      message: "Give valid email",
+                      message: "*Give valid email",
                     },
                   })}
                 />

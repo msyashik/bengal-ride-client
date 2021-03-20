@@ -14,22 +14,17 @@ const Home = () => {
     <div className="bgImg">
       <Header></Header>
       <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+        className="container"
+        style={{ paddingTop: "10%", paddingBottom: "20%" }}
       >
-        <div className="container">
-          <div className="row">
-            {transports.length > 0 &&
-              transports.map((transport) => (
-                <TransportDetail
-                  key={transport.transport}
-                  transport={transport}
-                ></TransportDetail>
-              ))}
-          </div>
+        <div className="row">
+          {transports.length > 0 &&
+            transports.map((transport) => (
+              <TransportDetail
+                key={transport.transport}
+                transport={transport}
+              ></TransportDetail>
+            ))}
         </div>
       </div>
     </div>
