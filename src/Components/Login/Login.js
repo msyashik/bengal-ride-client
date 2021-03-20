@@ -1,6 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
+import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
+
 import "./Login.css";
 import {
   BrowserRouter as Router,
@@ -179,7 +183,7 @@ const Login = () => {
               type="Submit"
               className="btn btn-primary w-100"
             >
-              Proceed using Google
+              <FontAwesomeIcon icon={faGoogle} /> Proceed using Google
             </Button>
           </div>
           <div className="col-md-6">
@@ -188,7 +192,7 @@ const Login = () => {
               type="Submit"
               className="btn btn-danger w-100"
             >
-              Proceed using Facebook
+              <FontAwesomeIcon icon={faFacebook} /> Proceed using Facebook
             </button>
           </div>
         </div>
