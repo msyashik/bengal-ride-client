@@ -1,4 +1,4 @@
-# React Routing Project
+# React Authentication Project
 
 ## [BengalRide](https://upbeat-torvalds-4cd2dc.netlify.app/)
 
