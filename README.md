@@ -1,6 +1,6 @@
 # React Authentication Project
 
-## [BengalRide](https://upbeat-torvalds-4cd2dc.netlify.app/)
+## [BengalRide](https://inspiring-lamport-26010f.netlify.app/)
 
 ### Languages and Tools
 
