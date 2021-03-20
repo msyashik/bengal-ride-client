@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import "./Login.css";
@@ -29,6 +29,8 @@ const Login = () => {
   let history = useHistory();
   let location = useLocation();
   let { from } = location.state || { from: { pathname: "/" } };
+  const [userCreated, setUserCreated] = useState("");
+  const [googleFbUserCreated, setGoogleFbUserCreated] = useState("");
 
   const googleSignIn = () => {
     const googleProvider = new firebase.auth.GoogleAuthProvider();
@@ -44,7 +46,9 @@ const Login = () => {
         history.replace(from);
       })
       .catch((error) => {
-        console.log(error.message);
+        setGoogleFbUserCreated(
+          "*An user has already been created with this email"
+        );
       });
   };
 
@@ -64,7 +68,7 @@ const Login = () => {
         console.log(user);
       })
       .catch((error) => {
-        console.log(error.message);
+        setUserCreated("*Please give valid email and password");
       });
   };
 
@@ -80,10 +84,11 @@ const Login = () => {
         };
         setLoggedIn(newUser);
         history.replace(from);
-        console.log(user);
       })
       .catch((error) => {
-        console.log(error.message);
+        setGoogleFbUserCreated(
+          "*An user has already been created with this email"
+        );
       });
   };
   return (
@@ -128,6 +133,10 @@ const Login = () => {
                   placeholder="Password"
                   ref={register({
                     required: "*Password is required",
+                    pattern: {
+                      value: /\d{1}/,
+                      message: "*Minimum 1 numeric value should be given",
+                    },
                     minLength: {
                       value: 6,
                       message: "*Minimum password length is 6",
@@ -138,6 +147,11 @@ const Login = () => {
               <div style={{ color: "red", fontSize: "15px" }}>
                 {errors.password && <p>{errors.password.message}</p>}
               </div>
+            </div>
+          </div>
+          <div className="row" style={{ color: "red" }}>
+            <div className="col-md-6" style={{ fontSize: "15px" }}>
+              {userCreated}
             </div>
           </div>
           <div className="row">
@@ -153,6 +167,11 @@ const Login = () => {
             Want to create a new account? <Link to="/signup">Register</Link>
           </p>
         </div>
+        <div className="row">
+          <div className="col-md-6" style={{ fontSize: "15px", color: "red" }}>
+            {googleFbUserCreated}
+          </div>
+        </div>
         <div className="row mt-2">
           <div className="col-md-6">
             <Button
@@ -160,7 +179,7 @@ const Login = () => {
               type="Submit"
               className="btn btn-primary w-100"
             >
-              Sign in using Google
+              Proceed using Google
             </Button>
           </div>
           <div className="col-md-6">
@@ -169,7 +188,7 @@ const Login = () => {
               type="Submit"
               className="btn btn-danger w-100"
             >
-              Sign in using Facebook
+              Proceed using Facebook
             </button>
           </div>
         </div>

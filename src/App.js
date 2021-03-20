@@ -46,9 +46,9 @@ function App() {
           <PrivateRoute path="/destination/:transportType">
             <DestinationSearch></DestinationSearch>
           </PrivateRoute>
-          <Route path="/destinationFixed/:transportType">
+          <PrivateRoute path="/destinationFixed/:transportType">
             <FinalDestination></FinalDestination>
-          </Route>
+          </PrivateRoute>
           <Route path="*">
             <NoMatch></NoMatch>
           </Route>

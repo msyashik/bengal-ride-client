@@ -138,6 +138,10 @@ const SignUp = () => {
                   placeholder="Password"
                   ref={register({
                     required: "*Password is required",
+                    pattern: {
+                      value: /\d{1}/,
+                      message: "*Minimum 1 numeric value should be given",
+                    },
                     minLength: {
                       value: 6,
                       message: "*Minimum password length is 6",
@@ -193,7 +197,7 @@ const SignUp = () => {
               type="Submit"
               className="btn btn-primary w-100"
             >
-              Sign up using Google
+              Proceed using Google
             </Button>
           </div>
           <div className="col-md-6">
@@ -202,7 +206,7 @@ const SignUp = () => {
               type="Submit"
               className="btn btn-danger w-100"
             >
-              Sign up using Facebook
+              Proceed using Facebook
             </button>
           </div>
         </div>
