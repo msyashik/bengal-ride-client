@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { UserContext } from "../../App";
 import Header from "../Header/Header";
+import LocationGoogleMap from "../LocationGoogleMap/LocationGoogleMap";
 
 const DestinationSearch = () => {
   const history = useHistory();
@@ -108,17 +109,8 @@ const DestinationSearch = () => {
                 </div>
               </div>
             </div>
-            <div className="col-md-8">
-              <p>
-                <iframe
-                  title="bangladesh"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7496723.66068468!2d85.84616609221882!3d23.442075849009655!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30adaaed80e18ba7%3A0xf2d28e0c4e1fc6b!2sBangladesh!5e0!3m2!1sen!2sbd!4v1616258217705!5m2!1sen!2sbd"
-                  width="600"
-                  height="450"
-                  style={{ border: "0" }}
-                  loading="lazy"
-                ></iframe>
-              </p>
+            <div className="col-md-8 mt-2">
+              <LocationGoogleMap></LocationGoogleMap>
             </div>
           </div>
         </form>
