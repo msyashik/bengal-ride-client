@@ -14,6 +14,7 @@ export const UserContext = createContext();
 
 function App() {
   const [loggedIn, setLoggedIn] = useState({
+    displayName: "",
     email: "",
   });
   const [passengerData, setPassengerData] = useState({

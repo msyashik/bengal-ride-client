@@ -12,6 +12,7 @@ import {
   fbSignIn,
   googleSignIn,
   initializeLoginFramework,
+  updateUsername,
 } from "../LoginManager/LoginManager";
 
 const SignUp = () => {
@@ -32,6 +33,7 @@ const SignUp = () => {
     creatingNewUserWithEmailAndPassword(data).then((res) => {
       if (res[1] === true) {
         setLoggedIn(res[0]);
+        updateUsername(data.name);
         history.replace(from);
       } else {
         setUserErrorMessage(

@@ -50,7 +50,7 @@ const Header = () => {
             >
               {verifyEmail ? (
                 <Nav.Link as={Link} to="/" style={{ color: "white" }}>
-                  {verifyEmail}
+                  {loggedIn.displayName}
                 </Nav.Link>
               ) : (
                 <Nav.Link as={Link} to="/login" style={{ color: "white" }}>

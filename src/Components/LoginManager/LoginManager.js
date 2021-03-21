@@ -21,6 +21,7 @@ export const googleSignIn = () => {
     .then((result) => {
       const user = result.user;
       const newUser = {
+        displayName: user.displayName,
         email: user.email,
       };
       return [newUser, true];
@@ -39,6 +40,7 @@ export const fbSignIn = () => {
     .then((result) => {
       var user = result.user;
       const newUser = {
+        displayName: user.displayName,
         email: user.email,
       };
       return [newUser, true];
@@ -57,6 +59,7 @@ export const signInWithEmailAndPassword = (props) => {
     .then((userCredential) => {
       const user = userCredential.user;
       const newUser = {
+        displayName: user.displayName,
         email: user.email,
       };
       return [newUser, true];
@@ -68,19 +71,35 @@ export const signInWithEmailAndPassword = (props) => {
 
 //creating new user with email and password
 export const creatingNewUserWithEmailAndPassword = (props) => {
-  const { email, password } = props;
+  const { email, password, name } = props;
   return firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
       const user = userCredential.user;
       const newUser = {
-        email: user.email,
+        displayName: name,
+        email: email,
       };
       return [newUser, true];
     })
     .catch((error) => {
       return ["This is from error", false];
+    });
+};
+
+export const updateUsername = (name) => {
+  const user = firebase.auth().currentUser;
+
+  user
+    .updateProfile({
+      displayName: name,
+    })
+    .then(function () {
+      //console.log("Username updated successfully");
+    })
+    .catch(function (error) {
+      console.log(error);
     });
 };
 
