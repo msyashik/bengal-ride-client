@@ -21,6 +21,7 @@
 - Responsive
 - Easy to use
 - Dynamic Routing
+- Private Routing
 - Conditional Rendering
 - Firebase Authentication
 - Sign in and Sign up using Google and Facebook
