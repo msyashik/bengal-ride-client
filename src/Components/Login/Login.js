@@ -4,29 +4,19 @@ import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
-
 import "./Login.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useHistory,
-  useLocation,
-} from "react-router-dom";
-import firebase from "firebase/app";
-import "firebase/auth";
-import firebaseConfig from "../firebase.config";
 import { UserContext } from "../../App";
 import Header from "../Header/Header";
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-} else {
-  firebase.app();
-}
+import {
+  fbSignIn,
+  googleSignIn,
+  initializeLoginFramework,
+  signInWithEmailAndPassword,
+} from "../LoginManager/LoginManager";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 const Login = () => {
+  initializeLoginFramework();
   const { register, errors, handleSubmit } = useForm();
   const { logInUser } = useContext(UserContext);
   const [loggedIn, setLoggedIn] = logInUser;
@@ -36,63 +26,41 @@ const Login = () => {
   const [userCreated, setUserCreated] = useState("");
   const [googleFbUserCreated, setGoogleFbUserCreated] = useState("");
 
-  const googleSignIn = () => {
-    const googleProvider = new firebase.auth.GoogleAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(googleProvider)
-      .then((result) => {
-        const user = result.user;
-        const newUser = {
-          email: user.email,
-        };
-        setLoggedIn(newUser);
-        history.replace(from);
-      })
-      .catch((error) => {
-        setGoogleFbUserCreated(
-          "*An user has already been created with this email"
-        );
-      });
-  };
-
   const onSubmit = (data) => {
-    //console.log(data);
-    const { email, password } = data;
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        const newUser = {
-          email: user.email,
-        };
-        setLoggedIn(newUser);
+    signInWithEmailAndPassword(data).then((res) => {
+      if (res[1] === true) {
+        setLoggedIn(res[0]);
         history.replace(from);
-      })
-      .catch((error) => {
+      } else {
         setUserCreated("*Please give valid email and password");
-      });
+      }
+    });
   };
 
-  const fbSignIn = () => {
-    const fbProvider = new firebase.auth.FacebookAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(fbProvider)
-      .then((result) => {
-        var user = result.user;
-        const newUser = {
-          email: user.email,
-        };
-        setLoggedIn(newUser);
+  const googleSignInCalling = () => {
+    googleSignIn().then((res) => {
+      if (res[1] === true) {
+        setLoggedIn(res[0]);
         history.replace(from);
-      })
-      .catch((error) => {
+      } else {
         setGoogleFbUserCreated(
           "*An user has already been created with this email"
         );
-      });
+      }
+    });
+  };
+
+  const fbSignInCalling = () => {
+    fbSignIn().then((res) => {
+      if (res[1] === true) {
+        setLoggedIn(res[0]);
+        history.replace(from);
+      } else {
+        setGoogleFbUserCreated(
+          "*An user has already been created with this email"
+        );
+      }
+    });
   };
   return (
     <div>
@@ -172,13 +140,13 @@ const Login = () => {
         </div>
         <div className="row">
           <div className="col-md-6" style={{ fontSize: "15px", color: "red" }}>
-            {googleFbUserCreated}
+            {/* {googleFbUserCreated} */}
           </div>
         </div>
         <div className="row mt-2">
           <div className="col-md-6 mt-2">
             <Button
-              onClick={googleSignIn}
+              onClick={googleSignInCalling}
               type="Submit"
               className="btn btn-primary w-100"
             >
@@ -187,7 +155,7 @@ const Login = () => {
           </div>
           <div className="col-md-6 mt-2">
             <button
-              onClick={fbSignIn}
+              onClick={fbSignInCalling}
               type="Submit"
               className="btn btn-danger w-100"
             >
