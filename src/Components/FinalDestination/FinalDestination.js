@@ -69,15 +69,6 @@ const FinalDestination = () => {
                     </p>
                     <p>${225}</p>
                   </div>
-                  <div className="card-body my-3 mx-2 rounded-3 shadow-lg bg-white text-dark d-flex justify-content-between align-items-center">
-                    <img src={currentImage} className="w-25 h-25" alt="" />
-                    <p>{transportType}</p>
-                    <p>
-                      <FontAwesomeIcon icon={faUserFriends} />
-                      {person}
-                    </p>
-                    <p>${175}</p>
-                  </div>
                 </div>
               </div>
             </div>

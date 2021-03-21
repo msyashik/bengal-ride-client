@@ -2,11 +2,19 @@ import React, { useContext } from "react";
 import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { UserContext } from "../../App";
+import "./Header.css";
 
 const Header = () => {
   const { logInUser } = useContext(UserContext);
   const [loggedIn, setLoggedIn] = logInUser;
   const verifyEmail = loggedIn.email;
+
+  const logOutUser = () => {
+    const logOutCurrentUser = {
+      email: "",
+    };
+    setLoggedIn(logOutCurrentUser);
+  };
 
   return (
     <Container>
@@ -31,7 +39,8 @@ const Header = () => {
             </Nav.Link>
             <Button
               style={{
-                padding: "0% 5%",
+                margin: "0% 1% 0% 0%",
+                padding: "0% 4%",
                 backgroundColor: "#FF6E40",
                 border: "none",
                 display: "flex",
@@ -49,6 +58,25 @@ const Header = () => {
                 </Nav.Link>
               )}
             </Button>
+            {verifyEmail && (
+              <Button
+                className="button-space-mobile"
+                style={{
+                  padding: "0% 3%",
+                  backgroundColor: "red",
+                  border: "none",
+                }}
+              >
+                <Nav.Link
+                  onClick={logOutUser}
+                  as={Link}
+                  to="/"
+                  style={{ color: "white" }}
+                >
+                  Logout
+                </Nav.Link>
+              </Button>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

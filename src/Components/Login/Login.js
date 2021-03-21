@@ -176,7 +176,7 @@ const Login = () => {
           </div>
         </div>
         <div className="row mt-2">
-          <div className="col-md-6">
+          <div className="col-md-6 mt-2">
             <Button
               onClick={googleSignIn}
               type="Submit"
@@ -185,7 +185,7 @@ const Login = () => {
               <FontAwesomeIcon icon={faGoogle} /> Proceed using Google
             </Button>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 mt-2">
             <button
               onClick={fbSignIn}
               type="Submit"
