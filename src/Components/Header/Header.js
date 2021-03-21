@@ -39,8 +39,8 @@ const Header = () => {
             </Nav.Link>
             <Button
               style={{
-                margin: "0% 1% 0% 0%",
-                padding: "0% 4%",
+                marginRight: "10px",
+                padding: "2px",
                 backgroundColor: "#FF6E40",
                 border: "none",
                 display: "flex",
@@ -49,7 +49,11 @@ const Header = () => {
               }}
             >
               {verifyEmail ? (
-                <Nav.Link as={Link} to="/" style={{ color: "white" }}>
+                <Nav.Link
+                  as={Link}
+                  to="/"
+                  style={{ color: "white", padding: "0%" }}
+                >
                   {loggedIn.displayName}
                 </Nav.Link>
               ) : (
@@ -62,7 +66,7 @@ const Header = () => {
               <Button
                 className="button-space-mobile"
                 style={{
-                  padding: "0% 3%",
+                  padding: "2px",
                   backgroundColor: "red",
                   border: "none",
                 }}
