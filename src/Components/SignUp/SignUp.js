@@ -7,6 +7,9 @@ import "firebase/auth";
 import firebaseConfig from "../firebase.config";
 import { UserContext } from "../../App";
 import Header from "../Header/Header";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
+import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -36,7 +39,6 @@ const SignUp = () => {
         };
         setLoggedIn(newUser);
         history.replace(from);
-        console.log(user);
       })
       .catch((error) => {
         console.log(error.message);
@@ -55,7 +57,6 @@ const SignUp = () => {
         };
         setLoggedIn(newUser);
         history.replace(from);
-        console.log(user);
       })
       .catch((error) => {
         console.log(error.message);
@@ -74,7 +75,6 @@ const SignUp = () => {
         };
         setLoggedIn(newUser);
         history.replace(from);
-        console.log(user);
       })
       .catch((error) => {
         console.log(error.message);
@@ -197,7 +197,7 @@ const SignUp = () => {
               type="Submit"
               className="btn btn-primary w-100"
             >
-              Proceed using Google
+              <FontAwesomeIcon icon={faGoogle} /> Proceed using Google
             </Button>
           </div>
           <div className="col-md-6">
@@ -206,7 +206,7 @@ const SignUp = () => {
               type="Submit"
               className="btn btn-danger w-100"
             >
-              Proceed using Facebook
+              <FontAwesomeIcon icon={faFacebook} /> Proceed using Facebook
             </button>
           </div>
         </div>

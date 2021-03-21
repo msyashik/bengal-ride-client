@@ -26,8 +26,6 @@ const FinalDestination = () => {
     currentImage = currentData.image;
   };
   searchingImage();
-  console.log(currentImage);
-  //console.log(currentImage);
   return (
     <div>
       <Header></Header>

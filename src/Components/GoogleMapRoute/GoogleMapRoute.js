@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   DirectionsRenderer,
   DirectionsService,
@@ -6,6 +6,7 @@ import {
   LoadScript,
 } from "@react-google-maps/api";
 import { Marker } from "@react-google-maps/api";
+import { UserContext } from "../../App";
 
 const containerStyle = {
   width: "100%",
@@ -18,6 +19,9 @@ const location = {
 };
 
 function GoogleMapRoute() {
+  const { passData } = useContext(UserContext);
+  const [passengerData, setPassengerData] = passData;
+  const { from, to } = passengerData;
   const [directionResponse, setDirectionResponse] = useState("");
   return (
     <LoadScript googleMapsApiKey="AIzaSyBxJiLp_TXynXad_AJX4vCN6s_xKOtmhGQ">
@@ -25,8 +29,8 @@ function GoogleMapRoute() {
         <DirectionsService
           // required
           options={{
-            destination: "Dhaka",
-            origin: "Sylhet",
+            destination: to,
+            origin: from,
             travelMode: "DRIVING",
           }}
           // required
@@ -36,7 +40,6 @@ function GoogleMapRoute() {
             }
           }}
         />
-        {console.log("directions", directionResponse)}
         {directionResponse && (
           <DirectionsRenderer
             // required

@@ -69,7 +69,6 @@ const Login = () => {
         };
         setLoggedIn(newUser);
         history.replace(from);
-        console.log(user);
       })
       .catch((error) => {
         setUserCreated("*Please give valid email and password");
