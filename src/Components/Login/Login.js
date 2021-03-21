@@ -26,6 +26,7 @@ const Login = () => {
   const [userCreated, setUserCreated] = useState("");
   const [googleFbUserCreated, setGoogleFbUserCreated] = useState("");
 
+  //sign in using email and password
   const onSubmit = (data) => {
     signInWithEmailAndPassword(data).then((res) => {
       if (res[1] === true) {
@@ -37,6 +38,7 @@ const Login = () => {
     });
   };
 
+  //sign in using google
   const googleSignInCalling = () => {
     googleSignIn().then((res) => {
       if (res[1] === true) {
@@ -50,6 +52,7 @@ const Login = () => {
     });
   };
 
+  //sign in using facebook
   const fbSignInCalling = () => {
     fbSignIn().then((res) => {
       if (res[1] === true) {
@@ -140,7 +143,7 @@ const Login = () => {
         </div>
         <div className="row">
           <div className="col-md-6" style={{ fontSize: "15px", color: "red" }}>
-            {/* {googleFbUserCreated} */}
+            {googleFbUserCreated}
           </div>
         </div>
         <div className="row mt-2">

@@ -1,23 +1,21 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link, useHistory, useLocation } from "react-router-dom";
-import firebase from "firebase/app";
-import "firebase/auth";
-import firebaseConfig from "../firebase.config";
 import { UserContext } from "../../App";
 import Header from "../Header/Header";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserFriends } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faGoogle } from "@fortawesome/free-brands-svg-icons";
-
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-} else {
-  firebase.app();
-}
+import {
+  creatingNewUserWithEmailAndPassword,
+  fbSignIn,
+  googleSignIn,
+  initializeLoginFramework,
+} from "../LoginManager/LoginManager";
 
 const SignUp = () => {
+  initializeLoginFramework();
   const { register, errors, handleSubmit, watch } = useForm();
   const { logInUser } = useContext(UserContext);
   const [loggedIn, setLoggedIn] = logInUser;
@@ -26,59 +24,49 @@ const SignUp = () => {
   let { from } = location.state || { from: { pathname: "/" } };
   const password = useRef({});
   password.current = watch("password", "");
+  const [googleFbUserCreated, setGoogleFbUserCreated] = useState("");
+  const [userErrorMessage, setUserErrorMessage] = useState("");
+
+  //sign up using email and password
   const onSubmit = (data) => {
-    //console.log(data);
-    const { email, password } = data;
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        const newUser = {
-          email: user.email,
-        };
-        setLoggedIn(newUser);
+    creatingNewUserWithEmailAndPassword(data).then((res) => {
+      if (res[1] === true) {
+        setLoggedIn(res[0]);
         history.replace(from);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+      } else {
+        setUserErrorMessage(
+          "*An user has already been created with this email"
+        );
+      }
+    });
   };
 
+  //proceeding using google
   const googleSignUp = () => {
-    const googleProvider = new firebase.auth.GoogleAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(googleProvider)
-      .then((result) => {
-        var user = result.user;
-        const newUser = {
-          email: user.email,
-        };
-        setLoggedIn(newUser);
+    googleSignIn().then((res) => {
+      if (res[1] === true) {
+        setLoggedIn(res[0]);
         history.replace(from);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+      } else {
+        setGoogleFbUserCreated(
+          "*An user has already been created with this email"
+        );
+      }
+    });
   };
 
+  //proceeding using facebook
   const fbSignUp = () => {
-    const fbProvider = new firebase.auth.FacebookAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(fbProvider)
-      .then((result) => {
-        var user = result.user;
-        const newUser = {
-          email: user.email,
-        };
-        setLoggedIn(newUser);
+    fbSignIn().then((res) => {
+      if (res[1] === true) {
+        setLoggedIn(res[0]);
         history.replace(from);
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+      } else {
+        setGoogleFbUserCreated(
+          "*An user has already been created with this email"
+        );
+      }
+    });
   };
 
   return (
@@ -178,6 +166,14 @@ const SignUp = () => {
             </div>
           </div>
           <div className="row">
+            <div
+              className="col-md-6"
+              style={{ fontSize: "15px", color: "red" }}
+            >
+              {userErrorMessage}
+            </div>
+          </div>
+          <div className="row">
             <div className="col-md-6">
               <Button type="Submit" className="btn btn-success mt-2 w-50">
                 Register
@@ -189,6 +185,11 @@ const SignUp = () => {
           <p>
             Already have an account? <Link to="/login">Login</Link>
           </p>
+        </div>
+        <div className="row">
+          <div className="col-md-6" style={{ fontSize: "15px", color: "red" }}>
+            {googleFbUserCreated}
+          </div>
         </div>
         <div className="row mt-2">
           <div className="col-md-6 mt-2">
