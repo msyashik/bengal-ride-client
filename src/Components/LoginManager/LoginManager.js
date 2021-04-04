@@ -103,6 +103,16 @@ export const updateUsername = (name) => {
     });
 };
 
+export const storeAuthToken = () => {
+  firebase
+    .auth()
+    .currentUser.getIdToken(true)
+    .then(function (idToken) {
+      sessionStorage.setItem("token", idToken);
+    })
+    .catch(function (error) {});
+};
+
 const LoginManager = () => {
   return <div></div>;
 };

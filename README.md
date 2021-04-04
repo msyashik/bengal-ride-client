@@ -1,4 +1,4 @@
-# React Authentication Project
+# React Fullstack Project
 
 ## [BengalRide](https://inspiring-lamport-26010f.netlify.app/)
 

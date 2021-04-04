@@ -6,6 +6,10 @@ import Login from "./Components/Login/Login";
 import Header from "./Components/Header/Header";
 import SignUp from "./Components/SignUp/SignUp";
 import NoMatch from "./Components/NoMatch/NoMatch";
+import Admin from "./Components/Admin/Admin";
+import PrivateRoute from "./Components/PrivateRoute/PrivateRoute";
+import Checkout from "./Components/Checkout/Checkout";
+import Orders from "./Components/Orders/Orders";
 
 export const UserContext = createContext();
 
@@ -34,6 +38,15 @@ function App() {
           <Route path="/signup">
             <SignUp></SignUp>
           </Route>
+          <PrivateRoute path="/admin">
+            <Admin></Admin>
+          </PrivateRoute>
+          <PrivateRoute path="/orders">
+            <Orders></Orders>
+          </PrivateRoute>
+          <PrivateRoute path="/order/:id">
+            <Checkout></Checkout>
+          </PrivateRoute>
           <Route path="*">
             <NoMatch></NoMatch>
           </Route>

@@ -12,6 +12,7 @@ import {
   googleSignIn,
   initializeLoginFramework,
   signInWithEmailAndPassword,
+  storeAuthToken,
 } from "../LoginManager/LoginManager";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
@@ -31,6 +32,7 @@ const Login = () => {
     signInWithEmailAndPassword(data).then((res) => {
       if (res[1] === true) {
         setLoggedIn(res[0]);
+        storeAuthToken();
         history.replace(from);
       } else {
         setUserCreated("*Please give valid email and password");
@@ -43,6 +45,7 @@ const Login = () => {
     googleSignIn().then((res) => {
       if (res[1] === true) {
         setLoggedIn(res[0]);
+        storeAuthToken();
         history.replace(from);
       } else {
         setGoogleFbUserCreated(
@@ -57,6 +60,7 @@ const Login = () => {
     fbSignIn().then((res) => {
       if (res[1] === true) {
         setLoggedIn(res[0]);
+        storeAuthToken();
         history.replace(from);
       } else {
         setGoogleFbUserCreated(

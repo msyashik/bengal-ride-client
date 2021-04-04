@@ -1,0 +1,19 @@
+.liStyleShow {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+}
+.nameStyleShow {
+  grid-column: 1 / span 3;
+}
+.weight-style {
+  grid-column: 4 / span 2;
+}
+.order-show {
+  grid-column: 7 / span 2;
+}
+@media only screen and (min-device-width: 200px) and (max-device-width: 500px) {
+  .listStyleShow {
+    font-size: 12px !important;
+    margin-left: 4px !important;
+  }
+}

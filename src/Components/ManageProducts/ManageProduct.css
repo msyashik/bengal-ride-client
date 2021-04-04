@@ -1,0 +1,22 @@
+.liStyle {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+.nameStyle {
+  grid-column: 1 / span 3;
+}
+@media only screen and (min-device-width: 200px) and (max-device-width: 500px) {
+  .listStyle {
+    font-size: 12px !important;
+    margin-left: 4px !important;
+  }
+  .formSection {
+    padding: 0.5rem !important;
+  }
+}
+
+@media (max-device-width: 767px) {
+  .manage-products-show {
+    margin-top: 2rem;
+  }
+}
