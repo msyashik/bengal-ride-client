@@ -27,8 +27,9 @@
 - Firebase Authentication
 - Sign in and Sign up using Google and Facebook
 - JWT Token
+- Context API
 - MongoDB Cloud
-- <br/>
+  <br/>
 
 ### Connect with me
 
