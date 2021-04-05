@@ -5,7 +5,7 @@ import { faTrashAlt, faEdit } from "@fortawesome/free-solid-svg-icons";
 const ShowManageProducts = (props) => {
   const { productName, productPrice, productWeight, _id } = props.event;
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/deleteProduct/${id}`, {
+    fetch(`https://hidden-garden-85563.herokuapp.com/deleteProduct/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

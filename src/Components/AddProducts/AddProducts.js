@@ -22,7 +22,7 @@ const AddProducts = () => {
       productPrice: data.price,
       productImage: imageURL,
     };
-    const url = `http://localhost:5000/addEvent`;
+    const url = `https://hidden-garden-85563.herokuapp.com/addEvent`;
     fetch(url, {
       method: "POST",
       headers: {

@@ -10,7 +10,7 @@ const Checkout = () => {
   const { email, displayName } = loggedIn;
   const { id } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:5000/product/${id}`)
+    fetch(`https://hidden-garden-85563.herokuapp.com/product/${id}`)
       .then((res) => res.json())
       .then((data) => setBuyProduct(data));
   }, [id]);
@@ -22,7 +22,7 @@ const Checkout = () => {
       email: email,
       displayName: displayName,
     };
-    fetch("http://localhost:5000/addOrder", {
+    fetch("https://hidden-garden-85563.herokuapp.com/addOrder", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -17,6 +17,7 @@
 
 ### Features
 
+- Fullstack Project
 - Well Designed and Functional
 - Responsive
 - Easy to use
@@ -25,7 +26,9 @@
 - Conditional Rendering
 - Firebase Authentication
 - Sign in and Sign up using Google and Facebook
-  <br/>
+- JWT Token
+- MongoDB Cloud
+- <br/>
 
 ### Connect with me
 

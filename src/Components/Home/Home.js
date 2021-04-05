@@ -9,7 +9,7 @@ const Home = () => {
   const [events, setEvents] = useState([]);
   const [spinner, setSpinner] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:5000/events")
+    fetch("https://hidden-garden-85563.herokuapp.com/events")
       .then((res) => res.json())
       .then((data) => {
         setEvents(data);

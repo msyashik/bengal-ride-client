@@ -12,7 +12,7 @@ const Orders = () => {
   const { email, displayName } = loggedIn;
 
   useEffect(() => {
-    fetch("http://localhost:5000/orders?email=" + email, {
+    fetch("https://hidden-garden-85563.herokuapp.com/orders?email=" + email, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
