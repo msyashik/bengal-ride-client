@@ -20,7 +20,7 @@ const Header = () => {
     <Container>
       <Navbar style={{ background: "transparent" }} expand="sm">
         <Navbar.Brand as={Link} to="/">
-          BengalRide
+          RichDeals
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">

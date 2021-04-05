@@ -42,16 +42,16 @@ const Checkout = () => {
               <tr>
                 <th scope="col">Description</th>
                 <th scope="col">Quantity</th>
-                <th scope="col">Weight</th>
-                <th scope="col">Price</th>
+                <th scope="col">Weight(lb)</th>
+                <th scope="col">Price($)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>{productName}</td>
                 <td>1</td>
-                <td>{productWeight} Pounds</td>
-                <td>${productPrice}</td>
+                <td>{productWeight}</td>
+                <td>{productPrice}</td>
               </tr>
             </tbody>
             <tfoot>
@@ -59,7 +59,7 @@ const Checkout = () => {
                 <th>Total</th>
                 <td></td>
                 <td></td>
-                <th>${productPrice}</th>
+                <th>{productPrice}</th>
               </tr>
             </tfoot>
           </table>
