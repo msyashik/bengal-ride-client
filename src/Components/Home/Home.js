@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../Header/Header";
 import "./Home.css";
-import data from "../../MOCK_DATA.json";
 import { Container } from "react-bootstrap";
 import ShowAllProducts from "../Show AllProducts/ShowAllProducts";
 
